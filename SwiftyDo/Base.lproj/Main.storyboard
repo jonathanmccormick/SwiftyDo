@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Todo_List" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SwiftyDo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoCell" id="0nB-vX-l8T" customClass="TodoItemTableViewCell" customModule="Todo_List" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoCell" id="0nB-vX-l8T" customClass="TodoItemTableViewCell" customModule="SwiftyDo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0nB-vX-l8T" id="TUq-kc-t7T">
@@ -64,7 +64,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="V2r-pr-YOE"/>
+                    <navigationItem key="navigationItem" id="V2r-pr-YOE">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="bmE-oa-yyC">
+                            <connections>
+                                <segue destination="duX-Gf-9gq" kind="presentation" id="3x9-Gd-PZS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="YNP-oZ-bbp" id="KCX-Hj-fg2"/>
                     </connections>
@@ -72,6 +78,33 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1076" y="132.68365817091455"/>
+        </scene>
+        <!--Add Todo View Controller-->
+        <scene sceneID="Q81-9D-7dY">
+            <objects>
+                <viewController id="HGQ-Ga-8I7" customClass="AddTodoViewController" customModule="SwiftyDo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4PN-Qp-wNp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="TFK-em-p4b"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Q3C-Pt-GnG">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="ZWa-Zn-7WU">
+                            <connections>
+                                <action selector="cancel:" destination="HGQ-Ga-8I7" id="pbH-Po-xIL"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="EiL-e9-Z36">
+                            <connections>
+                                <action selector="save:" destination="HGQ-Ga-8I7" id="g4P-CG-OJO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Ec-4t-f5l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2791.1999999999998" y="134.48275862068968"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8p4-R2-vcG">
@@ -90,6 +123,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WaI-ly-NMC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="132.68365817091455"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="jkL-pS-Ltm">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="duX-Gf-9gq" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Loj-ME-xQT">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="HGQ-Ga-8I7" kind="relationship" relationship="rootViewController" id="zY0-D8-Pna"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tQX-9X-Wrg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1852" y="134.48275862068968"/>
         </scene>
     </scenes>
 </document>

@@ -9,6 +9,14 @@
 import UIKit
 
 class AddTodoViewController: UIViewController {
+    
+    @IBAction func cancel(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func save(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
