@@ -1,6 +1,8 @@
 
 Features to do:
     - Swipe left to complete, right to delete
+    - Validate new todo entry
+    - Make todos dragable / sortable
     - Reminders date/time/location
     - Local persistance
     - Auth / cloud persistance
