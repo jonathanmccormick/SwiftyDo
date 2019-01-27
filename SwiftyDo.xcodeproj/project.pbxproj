@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F901D2E221FD530F00911704 /* AddTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F901D2E121FD530F00911704 /* AddTodoViewController.swift */; };
+		F901D2E421FD5BB600911704 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F901D2E321FD5BB600911704 /* DataManager.swift */; };
 		F977D67121FD3D960051F7E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F977D67021FD3D960051F7E3 /* AppDelegate.swift */; };
 		F977D67321FD3D960051F7E3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F977D67221FD3D960051F7E3 /* ViewController.swift */; };
 		F977D67621FD3D960051F7E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F977D67421FD3D960051F7E3 /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		F901D2E121FD530F00911704 /* AddTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoViewController.swift; sourceTree = "<group>"; };
+		F901D2E321FD5BB600911704 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		F977D66D21FD3D960051F7E3 /* SwiftyDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F977D67021FD3D960051F7E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F977D67221FD3D960051F7E3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				F977D68221FD417A0051F7E3 /* Todo.swift */,
 				F977D68621FD45970051F7E3 /* TodoItemTableViewCell.swift */,
 				F901D2E121FD530F00911704 /* AddTodoViewController.swift */,
+				F901D2E321FD5BB600911704 /* DataManager.swift */,
 			);
 			path = SwiftyDo;
 			sourceTree = "<group>";
@@ -149,6 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F977D67321FD3D960051F7E3 /* ViewController.swift in Sources */,
+				F901D2E421FD5BB600911704 /* DataManager.swift in Sources */,
 				F901D2E221FD530F00911704 /* AddTodoViewController.swift in Sources */,
 				F977D68321FD417A0051F7E3 /* Todo.swift in Sources */,
 				F977D68721FD45970051F7E3 /* TodoItemTableViewCell.swift in Sources */,
