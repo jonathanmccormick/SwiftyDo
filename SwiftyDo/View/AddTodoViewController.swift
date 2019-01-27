@@ -18,14 +18,20 @@ class AddTodoViewController: UIViewController {
     
     @IBAction func save(_ sender: UIBarButtonItem) {
         if let unwrapped = todoText.text {
-         let todo = TodoItem(title: unwrapped)
-            DataManager.instance.todos.append(todo)
+            if validateInput(input: unwrapped) {
+                let todo = TodoItem(title: unwrapped)
+                DataManager.instance.todos.append(todo)
+                dismiss(animated: true, completion: nil)
+            }
         }
-        
-        dismiss(animated: true, completion: nil)
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    private func validateInput(input: String) -> Bool {
+        if input.trimmingCharacters(in: .whitespaces).isEmpty {
+            return false
+        }
+        else {
+            return true
+        }
     }
 }
