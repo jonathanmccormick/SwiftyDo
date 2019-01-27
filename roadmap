@@ -1,0 +1,6 @@
+
+Features:
+    - Swipe left to complete, right to delete
+    - Reminders date/time/location
+    - Local persistance
+    - Auth / cloud persistance
