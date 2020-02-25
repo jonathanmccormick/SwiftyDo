@@ -4,7 +4,6 @@ Features to do:
     - Validate new todo entry
     - Make todos dragable / sortable
     - Reminders date/time/location
-    - Local persistance
     - Auth / cloud persistance
     - Splash screen / logo
     - Default message if no todos exist / all todos completed
@@ -12,3 +11,4 @@ Features to do:
 Completed features:
     - Organize folders
     - Add todo
+    - Local persistance (Core data)
