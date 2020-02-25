@@ -101,19 +101,22 @@ extension ViewController: UITableViewDelegate {
         }
     }
     
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
-    {
+    private func complete(reminder: NSManagedObject) {
+        reminder.setValue(true, forKey: "completed")
+        do {
+            try self.managedObjectContext.save()
+            print(reminder)
+        } catch let error as NSError {
+            print("Couldn't save: \(error)")
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let completeAction = UIContextualAction(style: .normal, title:  "Complete", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-                let reminder = self.fetchedResultsController.object(at: indexPath)
-                reminder.setValue(true, forKey: "completed")
-                do {
-                    try self.managedObjectContext.save()
-                    print(reminder)
-                } catch let error as NSError {
-                    print("Couldn't save: \(error)")
-                }
+            self.complete(reminder: self.fetchedResultsController.object(at: indexPath))
                 success(true)
             })
+        
             completeAction.backgroundColor = .systemGreen
             return UISwipeActionsConfiguration(actions: [completeAction])
     }
