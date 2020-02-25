@@ -59,6 +59,16 @@ class ViewController: UIViewController {
             managedObjectContext.rollback()
         }
     }
+    
+    private func complete(reminder: NSManagedObject) {
+        reminder.setValue(true, forKey: "completed")
+        do {
+            try self.managedObjectContext.save()
+            print(reminder)
+        } catch let error as NSError {
+            print("Couldn't save: \(error)")
+        }
+    }
 }
 
 extension ViewController: UITableViewDataSource {
@@ -85,29 +95,12 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-
-
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == .delete) {
-            delete(reminder: fetchedResultsController.object(at: indexPath))
-        }
-    }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let viewController = storyboard?.instantiateViewController(identifier: "ReminderViewController") as? ReminderViewController {
             tableView.deselectRow(at: indexPath, animated: true)
             viewController.reminder = fetchedResultsController.object(at: indexPath)
             navigationController?.pushViewController(viewController, animated: true)
-        }
-    }
-    
-    private func complete(reminder: NSManagedObject) {
-        reminder.setValue(true, forKey: "completed")
-        do {
-            try self.managedObjectContext.save()
-            print(reminder)
-        } catch let error as NSError {
-            print("Couldn't save: \(error)")
         }
     }
     
@@ -117,8 +110,19 @@ extension ViewController: UITableViewDelegate {
                 success(true)
             })
         
-            completeAction.backgroundColor = .systemGreen
-            return UISwipeActionsConfiguration(actions: [completeAction])
+        completeAction.backgroundColor = .systemGreen
+        return UISwipeActionsConfiguration(actions: [completeAction])
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+    {
+        let modifyAction = UIContextualAction(style: .normal, title:  "Delete", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+            self.delete(reminder: self.fetchedResultsController.object(at: indexPath))
+            success(true)
+        })
+        modifyAction.backgroundColor = .systemRed
+        return UISwipeActionsConfiguration(actions: [modifyAction])
     }
 }
 

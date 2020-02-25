@@ -1,14 +1,16 @@
 
 Features to do:
-    - Swipe left to complete, right to delete
+    - Move all CoreData logic to wrapper
     - Validate new todo entry
     - Make todos dragable / sortable
     - Reminders date/time/location
-    - Auth / cloud persistance
+    - Auth / cloud persistance (FaceID, encryption)
     - Splash screen / logo
     - Default message if no todos exist / all todos completed
+    - DI
 
 Completed features:
     - Organize folders
     - Add todo
     - Local persistance (Core data)
+    - Swipe left to complete, right to delete
