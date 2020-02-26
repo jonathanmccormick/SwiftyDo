@@ -21,8 +21,10 @@ class ViewController: UIViewController {
         
         setupManagedObjectContext()
         setupRemindersFetchResultsController()
+        fetchReminders()
     }
     
+    // todo managed object context doesn't belong in the view
     private func setupManagedObjectContext() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -31,6 +33,7 @@ class ViewController: UIViewController {
         managedObjectContext = appDelegate.persistentContainer.viewContext
     }
     
+    // Fetch request doesn't belong in the view controller
     private func setupRemindersFetchResultsController() {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Reminder")
         let ascendingByNameSortDescriptor = NSSortDescriptor(key: "name", ascending: true)
@@ -42,7 +45,9 @@ class ViewController: UIViewController {
             sectionNameKeyPath: nil,
             cacheName: nil) as? NSFetchedResultsController<Reminder>
         fetchedResultsController.delegate = self
-        
+    }
+    
+    private func fetchReminders() {
         do {
             try self.fetchedResultsController.performFetch()
         } catch {
@@ -50,6 +55,7 @@ class ViewController: UIViewController {
         }
     }
     
+    // todo: this is all Core Data stuff
     private func delete(reminder: Reminder) {
         managedObjectContext.delete(reminder)
         
@@ -60,6 +66,7 @@ class ViewController: UIViewController {
         }
     }
     
+    // todo: more core data
     private func complete(reminder: NSManagedObject) {
         reminder.setValue(true, forKey: "completed")
         do {
@@ -69,8 +76,16 @@ class ViewController: UIViewController {
             print("Couldn't save: \(error)")
         }
     }
+    
+    // todo: not sure where this should go but it's not here... NavigationController?
+    private func presentReminderViewController(indexPath: IndexPath) {
+        let viewController = storyboard?.instantiateViewController(identifier: ReminderViewController.storyboardIdentifier) as! ReminderViewController
+        viewController.configure(with: fetchedResultsController.object(at: indexPath))
+        navigationController?.pushViewController(viewController, animated: true)
+    }
 }
 
+//MARK: - TableView DataSource
 extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -84,6 +99,7 @@ extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         
+        // todo: move this to VM/presenter?
         let reminder = fetchedResultsController.object(at: indexPath)
         
         cell.textLabel?.text = reminder.name
@@ -91,17 +107,15 @@ extension ViewController: UITableViewDataSource {
     }
 }
 
+//MARK: - TableView Delegate
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let viewController = storyboard?.instantiateViewController(identifier: "ReminderViewController") as? ReminderViewController {
-            tableView.deselectRow(at: indexPath, animated: true)
-            viewController.configure(with: fetchedResultsController.object(at: indexPath))
-            navigationController?.pushViewController(viewController, animated: true)
-        }
+        tableView.deselectRow(at: indexPath, animated: true)
+        presentReminderViewController(indexPath: indexPath)
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -120,11 +134,13 @@ extension ViewController: UITableViewDelegate {
             self.delete(reminder: self.fetchedResultsController.object(at: indexPath))
             success(true)
         })
+        
         modifyAction.backgroundColor = .systemRed
         return UISwipeActionsConfiguration(actions: [modifyAction])
     }
 }
 
+//MARK: - Fetched Results Controller Delegate
 extension ViewController: NSFetchedResultsControllerDelegate {
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         self.tableView.beginUpdates()
