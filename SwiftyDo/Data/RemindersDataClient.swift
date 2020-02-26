@@ -22,23 +22,23 @@ class ReminderDataClient {
         managedObjectContext = appDelegete.persistentContainer.viewContext
     }
     
-    func create(name: String, completed: Bool, notes: String, dueDate: Date) {
+    func create(reminderDTO: ReminderDTO) {
         let entity = NSEntityDescription.entity(forEntityName: "Reminder", in: managedObjectContext)!
         let newReminder = NSManagedObject(entity: entity, insertInto: managedObjectContext)
         
-        newReminder.setValue(name, forKey: "name")
-        newReminder.setValue(completed, forKey: "completed")
-        newReminder.setValue(notes, forKey: "notes")
-        newReminder.setValue(dueDate, forKey: "dueDate")
+        newReminder.setValue(reminderDTO.name, forKey: "name")
+        newReminder.setValue(reminderDTO.completed, forKey: "completed")
+        newReminder.setValue(reminderDTO.notes, forKey: "notes")
+        newReminder.setValue(reminderDTO.dueDate, forKey: "dueDate")
         
         save()
     }
     
-    func update(reminder: Reminder, name: String, completed: Bool, notes: String, dueDate: Date) {
-        reminder.setValue(name, forKey: "name")
-        reminder.setValue(completed, forKey: "completed")
-        reminder.setValue(notes, forKey: "notes")
-        reminder.setValue(dueDate, forKey: "dueDate")
+    func update(existingReminder: Reminder, reminderDTO: ReminderDTO) {
+        existingReminder.setValue(reminderDTO.name, forKey: "name")
+        existingReminder.setValue(reminderDTO.completed, forKey: "completed")
+        existingReminder.setValue(reminderDTO.notes, forKey: "notes")
+        existingReminder.setValue(reminderDTO.dueDate, forKey: "dueDate")
         
         save()
     }

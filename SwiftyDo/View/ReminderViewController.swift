@@ -60,13 +60,15 @@ private extension ReminderViewController {
     
     func createOrUpdate(name: String, completed: Bool, notes: String, dueDate: Date) {
         
+        let reminderDTO = ReminderDTO(name: name, notes: notes, completed: completed, dueDate: dueDate)
+        
         // Update: if we were passed a reminder, update it
         if (reminder != nil) {
-            reminderDataClient.update(reminder: reminder, name: name, completed: completed, notes: notes, dueDate: dueDate)
+            reminderDataClient.update(existingReminder: reminder, reminderDTO: reminderDTO)
             
         // Create: otherwise, create it
         } else {
-            reminderDataClient.create(name: name, completed: completed, notes: notes, dueDate: dueDate)
+            reminderDataClient.create(reminderDTO: reminderDTO)
         }
     }
     
