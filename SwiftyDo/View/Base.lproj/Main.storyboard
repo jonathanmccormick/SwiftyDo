@@ -91,7 +91,8 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="saveAndDismiss:" destination="PzH-OE-m4X" eventType="touchUpInside" id="FBR-xe-Yhn"/>
+                                            <action selector="addOrSave:" destination="PzH-OE-m4X" eventType="touchUpInside" id="I6t-TR-Yum"/>
+                                            <action selector="createOrUpdate:" destination="PzH-OE-m4X" eventType="touchUpInside" id="QJZ-XT-x0K"/>
                                         </connections>
                                     </button>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="kjx-0l-Vm6">
