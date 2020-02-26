@@ -99,7 +99,7 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let viewController = storyboard?.instantiateViewController(identifier: "ReminderViewController") as? ReminderViewController {
             tableView.deselectRow(at: indexPath, animated: true)
-            viewController.reminder = fetchedResultsController.object(at: indexPath)
+            viewController.configure(with: fetchedResultsController.object(at: indexPath))
             navigationController?.pushViewController(viewController, animated: true)
         }
     }
@@ -114,8 +114,7 @@ extension ViewController: UITableViewDelegate {
         return UISwipeActionsConfiguration(actions: [completeAction])
     }
     
-    func tableView(_ tableView: UITableView,
-                   trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
     {
         let modifyAction = UIContextualAction(style: .normal, title:  "Delete", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
             self.delete(reminder: self.fetchedResultsController.object(at: indexPath))
