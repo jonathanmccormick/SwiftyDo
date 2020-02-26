@@ -12,6 +12,8 @@ import CoreData
 
 class ReminderViewController: UIViewController {
     
+    static let storyboardIdentifier = "ReminderViewController"
+    
     private var reminder: Reminder!
     
     public func configure(with reminder: Reminder) {
