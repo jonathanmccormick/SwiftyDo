@@ -23,7 +23,11 @@ class ReminderViewController: UIViewController {
     
     //MARK: Actions
     @IBAction func addOrSave(_ sender: Any) {
-        createOrUpdate()
+        createOrUpdate(
+            name: reminderTextField.text ?? "nil",
+            completed: false,
+            notes: notesTextField.text ?? "",
+            dueDate: datePicker.date)
         dismissSelf()
     }
 }
@@ -54,15 +58,15 @@ private extension ReminderViewController {
         cta.setTitle("Save", for: .normal)
     }
     
-    func createOrUpdate() {
+    func createOrUpdate(name: String, completed: Bool, notes: String, dueDate: Date) {
         
-        // Create: if we were passed an existing reminder, update it's data with the user's changes
+        // Update: if we were passed a reminder, update it
         if (reminder != nil) {
-            reminderDataClient.create(name: reminderTextField.text ?? "nil", completed: false, notes: notesTextField.text ?? "", dueDate: datePicker.date)
+            reminderDataClient.update(reminder: reminder, name: name, completed: completed, notes: notes, dueDate: dueDate)
             
-        // Update: otherwise, create a new one and configure it with the data the user entered.
+        // Create: otherwise, create it
         } else {
-            reminderDataClient.update(reminder: reminder, name: reminderTextField.text ?? "nil", completed: false, notes: notesTextField.text ?? "", dueDate: datePicker.date)
+            reminderDataClient.create(name: name, completed: completed, notes: notes, dueDate: dueDate)
         }
     }
     
