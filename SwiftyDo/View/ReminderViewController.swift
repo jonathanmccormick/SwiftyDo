@@ -58,6 +58,8 @@ private extension ReminderViewController {
         cta.setTitle("Save", for: .normal)
     }
     
+    // todo: this needs to move to VM, just have to figure out a better way to know if
+    // we need to create or update. Could do it in action. VC shouldn't know about DC.
     func createOrUpdate(name: String, completed: Bool, notes: String, dueDate: Date) {
         
         let reminderDTO = ReminderDTO(name: name, notes: notes, completed: completed, dueDate: dueDate)
