@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     
     var fetchedResultsController: NSFetchedResultsController<Reminder>!
     var managedObjectContext: NSManagedObjectContext!
+    var reminderDataClient = ReminderDataClient()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,28 +53,6 @@ class ViewController: UIViewController {
             try self.fetchedResultsController.performFetch()
         } catch {
             print("!!!")
-        }
-    }
-    
-    // todo: this is all Core Data stuff
-    private func delete(reminder: Reminder) {
-        managedObjectContext.delete(reminder)
-        
-        do {
-            try managedObjectContext.save()
-        } catch {
-            managedObjectContext.rollback()
-        }
-    }
-    
-    // todo: more core data
-    private func complete(reminder: NSManagedObject) {
-        reminder.setValue(true, forKey: "completed")
-        do {
-            try self.managedObjectContext.save()
-            print(reminder)
-        } catch let error as NSError {
-            print("Couldn't save: \(error)")
         }
     }
     
@@ -120,7 +99,7 @@ extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let completeAction = UIContextualAction(style: .normal, title:  "Complete", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-            self.complete(reminder: self.fetchedResultsController.object(at: indexPath))
+            self.reminderDataClient.complete(reminder: self.fetchedResultsController.object(at: indexPath))
                 success(true)
             })
         
@@ -131,7 +110,7 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
     {
         let modifyAction = UIContextualAction(style: .normal, title:  "Delete", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-            self.delete(reminder: self.fetchedResultsController.object(at: indexPath))
+            self.reminderDataClient.delete(reminder: self.fetchedResultsController.object(at: indexPath))
             success(true)
         })
         

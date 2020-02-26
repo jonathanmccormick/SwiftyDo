@@ -8,13 +8,13 @@
 
 import Foundation
 import UIKit
-import CoreData
 
 class ReminderViewController: UIViewController {
     
     static let storyboardIdentifier = "ReminderViewController"
     
     private var reminder: Reminder!
+    private let reminderDataClient = ReminderDataClient()
     
     public func configure(with reminder: Reminder) {
         self.reminder = reminder
@@ -27,19 +27,13 @@ class ReminderViewController: UIViewController {
     
     @IBAction func saveAndDismiss(_ sender: Any) {
         
-        // todo: this is Core Data, not view
-        guard let appDelegete = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        let managedContext = appDelegete.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Reminder", in: managedContext)!
-        
-        // todo: move to VM/preparer/presenter?
-        
         // If we were passed an existing reminder, update it's data with the user's changes
         // otherwise, create a new one and configure it with the data the user entered.
-        setValuesOn(reminder ?? NSManagedObject(entity: entity, insertInto: managedContext))
-        save(managedContext)
+        if (reminder == nil) {
+            reminderDataClient.create(name: reminderTextField.text ?? "nil", completed: false, notes: notesTextField.text ?? "", dueDate: datePicker.date)
+        } else {
+            reminderDataClient.update(reminder: reminder, name: reminderTextField.text ?? "nil", completed: false, notes: notesTextField.text ?? "", dueDate: datePicker.date)
+        }
         
         navigationController?.popViewController(animated: true)
     }
@@ -68,22 +62,5 @@ private extension ReminderViewController {
         
         // Change "Add" button to "Save"
         cta.setTitle("Save", for: .normal)
-    }
-    
-    // todo: extract from view maybe?
-    func setValuesOn(_ newReminder: NSManagedObject) {
-        newReminder.setValue(reminderTextField.text ?? "nil", forKey: "name")
-        newReminder.setValue(false, forKey: "completed")
-        newReminder.setValue(notesTextField.text, forKey: "notes")
-        newReminder.setValue(datePicker.date, forKey: "dueDate")
-    }
-    
-    // todo: extract from view
-    func save(_ managedContext: NSManagedObjectContext) {
-        do {
-            try managedContext.save()
-        } catch let error as NSError {
-            print("Couldn't save: \(error)")
-        }
     }
 }
