@@ -92,7 +92,6 @@
                                         </state>
                                         <connections>
                                             <action selector="addOrSave:" destination="PzH-OE-m4X" eventType="touchUpInside" id="I6t-TR-Yum"/>
-                                            <action selector="createOrUpdate:" destination="PzH-OE-m4X" eventType="touchUpInside" id="QJZ-XT-x0K"/>
                                         </connections>
                                     </button>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="kjx-0l-Vm6">
