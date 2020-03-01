@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F92ACAAF23F8FA97004FE6DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92ACAAE23F8FA97004FE6DE /* AppDelegate.swift */; };
-		F92ACAB323F8FA97004FE6DE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92ACAB223F8FA97004FE6DE /* ViewController.swift */; };
+		F92ACAB323F8FA97004FE6DE /* ReminderListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92ACAB223F8FA97004FE6DE /* ReminderListViewController.swift */; };
 		F92ACAB923F8FA97004FE6DE /* SwiftyDo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F92ACAB723F8FA97004FE6DE /* SwiftyDo.xcdatamodeld */; };
 		F92ACABB23F8FA98004FE6DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F92ACABA23F8FA98004FE6DE /* Assets.xcassets */; };
 		F92ACABE23F8FA98004FE6DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F92ACABC23F8FA98004FE6DE /* LaunchScreen.storyboard */; };
@@ -23,7 +23,7 @@
 		F92ACAAB23F8FA97004FE6DE /* SwiftyDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F92ACAAE23F8FA97004FE6DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F92ACAB023F8FA97004FE6DE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F92ACAB223F8FA97004FE6DE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F92ACAB223F8FA97004FE6DE /* ReminderListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListViewController.swift; sourceTree = "<group>"; };
 		F92ACAB523F8FA97004FE6DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F92ACAB823F8FA97004FE6DE /* SwiftyDo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SwiftyDo.xcdatamodel; sourceTree = "<group>"; };
 		F92ACABA23F8FA98004FE6DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -77,7 +77,7 @@
 		F92ACAC92401BAC8004FE6DE /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F92ACAB223F8FA97004FE6DE /* ViewController.swift */,
+				F92ACAB223F8FA97004FE6DE /* ReminderListViewController.swift */,
 				F92ACAB423F8FA97004FE6DE /* Main.storyboard */,
 				F92ACABC23F8FA98004FE6DE /* LaunchScreen.storyboard */,
 				F92ACAC523F8FB47004FE6DE /* ReminderViewController.swift */,
@@ -169,7 +169,7 @@
 				F9770EB02404D7DF009BC667 /* SceneDelegate.swift in Sources */,
 				F9F0B64124063A82004436DD /* ReminderDTO.swift in Sources */,
 				F92ACAC623F8FB47004FE6DE /* ReminderViewController.swift in Sources */,
-				F92ACAB323F8FA97004FE6DE /* ViewController.swift in Sources */,
+				F92ACAB323F8FA97004FE6DE /* ReminderListViewController.swift in Sources */,
 				F92ACAB923F8FA97004FE6DE /* SwiftyDo.xcdatamodeld in Sources */,
 				F9F0B63F24062CED004436DD /* RemindersDataClient.swift in Sources */,
 				F92ACAAF23F8FA97004FE6DE /* AppDelegate.swift in Sources */,

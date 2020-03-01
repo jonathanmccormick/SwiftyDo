@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class ViewController: UIViewController {
+class ReminderListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -65,7 +65,7 @@ class ViewController: UIViewController {
 }
 
 //MARK: - TableView DataSource
-extension ViewController: UITableViewDataSource {
+extension ReminderListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let sections = fetchedResultsController.sections {
@@ -87,7 +87,7 @@ extension ViewController: UITableViewDataSource {
 }
 
 //MARK: - TableView Delegate
-extension ViewController: UITableViewDelegate {
+extension ReminderListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
@@ -120,7 +120,7 @@ extension ViewController: UITableViewDelegate {
 }
 
 //MARK: - Fetched Results Controller Delegate
-extension ViewController: NSFetchedResultsControllerDelegate {
+extension ReminderListViewController: NSFetchedResultsControllerDelegate {
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         self.tableView.beginUpdates()
     }
