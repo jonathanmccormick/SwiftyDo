@@ -13,53 +13,18 @@ class ReminderListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var fetchedResultsController: NSFetchedResultsController<Reminder>!
-    var managedObjectContext: NSManagedObjectContext!
-    var reminderDataClient = ReminderDataClient()
+    private var viewModel: ReminderListViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupManagedObjectContext()
-        setupRemindersFetchResultsController()
-        fetchReminders()
-    }
-    
-    // todo managed object context doesn't belong in the view
-    private func setupManagedObjectContext() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        managedObjectContext = appDelegate.persistentContainer.viewContext
-    }
-    
-    // Fetch request doesn't belong in the view controller
-    private func setupRemindersFetchResultsController() {
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Reminder")
-        let ascendingByNameSortDescriptor = NSSortDescriptor(key: "name", ascending: true)
-        fetchRequest.sortDescriptors = [ascendingByNameSortDescriptor]
-        
-        fetchedResultsController = NSFetchedResultsController(
-            fetchRequest: fetchRequest,
-            managedObjectContext: managedObjectContext,
-            sectionNameKeyPath: nil,
-            cacheName: nil) as? NSFetchedResultsController<Reminder>
-        fetchedResultsController.delegate = self
-    }
-    
-    private func fetchReminders() {
-        do {
-            try self.fetchedResultsController.performFetch()
-        } catch {
-            print("!!!")
-        }
+        viewModel = ReminderListViewModel(delegate: self)
     }
     
     // todo: not sure where this should go but it's not here... NavigationController?
     private func presentReminderViewController(indexPath: IndexPath) {
         let viewController = storyboard?.instantiateViewController(identifier: ReminderViewController.storyboardIdentifier) as! ReminderViewController
-        viewController.configure(with: fetchedResultsController.object(at: indexPath))
+        viewController.configure(with: viewModel.fetchedResultsController.object(at: indexPath))
         navigationController?.pushViewController(viewController, animated: true)
     }
 }
@@ -68,7 +33,7 @@ class ReminderListViewController: UIViewController {
 extension ReminderListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let sections = fetchedResultsController.sections {
+        if let sections = viewModel.fetchedResultsController.sections {
             return sections[section].numberOfObjects
         } else {
             return 0
@@ -79,7 +44,7 @@ extension ReminderListViewController: UITableViewDataSource {
         let cell = UITableViewCell()
         
         // todo: move this to VM/presenter?
-        let reminder = fetchedResultsController.object(at: indexPath)
+        let reminder = viewModel.fetchedResultsController.object(at: indexPath)
         
         cell.textLabel?.text = reminder.name
         return cell
@@ -99,7 +64,7 @@ extension ReminderListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let completeAction = UIContextualAction(style: .normal, title:  "Complete", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-            self.reminderDataClient.complete(reminder: self.fetchedResultsController.object(at: indexPath))
+            self.viewModel.complete(reminderAt: indexPath)
                 success(true)
             })
         
@@ -110,7 +75,7 @@ extension ReminderListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
     {
         let modifyAction = UIContextualAction(style: .normal, title:  "Delete", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-            self.reminderDataClient.delete(reminder: self.fetchedResultsController.object(at: indexPath))
+            self.viewModel.delete(reminderAt: indexPath)
             success(true)
         })
         
@@ -139,7 +104,7 @@ extension ReminderListViewController: NSFetchedResultsControllerDelegate {
             tableView.deleteRows(at: [indexPath!], with: .fade)
         case .update:
             let cell = tableView.cellForRow(at: indexPath!)
-            cell?.textLabel?.text = fetchedResultsController.object(at: indexPath!).name!
+            cell?.textLabel?.text = viewModel.fetchedResultsController.object(at: indexPath!).name!
         case .move:
             tableView.deleteRows(at: [indexPath!], with: .fade)
             tableView.insertRows(at: [indexPath!], with: .fade)
