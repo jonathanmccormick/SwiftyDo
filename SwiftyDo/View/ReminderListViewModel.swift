@@ -22,14 +22,7 @@ class ReminderListViewModel {
         fetchedResultsController.delegate = delegate
     }
     
-    func complete(reminderAt indexPath: IndexPath) {
-        reminderDataClient.complete(reminder: fetchedResultsController.object(at: indexPath))
-    }
-    
-    func delete(reminderAt indexPath: IndexPath) {
-        reminderDataClient.delete(reminder: fetchedResultsController.object(at: indexPath))
-    }
-    
+// MARK: - Setup
     private func setupManagedObjectContext() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -56,5 +49,14 @@ class ReminderListViewModel {
         } catch {
             print("!!!")
         }
+    }
+    
+// MARK: - Public Interface
+    func complete(reminderAt indexPath: IndexPath) {
+        reminderDataClient.complete(reminder: fetchedResultsController.object(at: indexPath))
+    }
+    
+    func delete(reminderAt indexPath: IndexPath) {
+        reminderDataClient.delete(reminder: fetchedResultsController.object(at: indexPath))
     }
 }
