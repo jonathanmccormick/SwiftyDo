@@ -23,12 +23,14 @@ class ReminderViewController: UIViewController {
     
     //MARK: Actions
     @IBAction func addOrSave(_ sender: Any) {
-        createOrUpdate(
-            name: reminderTextField.text ?? "nil",
-            completed: false,
-            notes: notesTextField.text ?? "",
-            dueDate: datePicker.date)
-        dismissSelf()
+        if isTitleFieldValid() {
+            createOrUpdate(
+                name: reminderTextField.text!,
+                completed: false,
+                notes: notesTextField.text ?? "",
+                dueDate: datePicker.date)
+            dismissSelf()
+        }
     }
 }
 
@@ -76,6 +78,17 @@ private extension ReminderViewController {
     
     func dismissSelf() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    func isTitleFieldValid() -> Bool {
+        if reminderTextField.text!.isEmptyOrWhitespace() {
+            let alert = UIAlertController(title: "No Title", message: "Please enter a title.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return false
+        }
+        
+        return true
     }
 }
 

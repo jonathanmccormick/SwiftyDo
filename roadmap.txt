@@ -1,7 +1,5 @@
 
 Features to do:
-    - Move all CoreData logic to wrapper
-    - Validate new todo entry
     - Make todos dragable / sortable
     - Reminders date/time/location
     - Auth / cloud persistance (FaceID, encryption)
@@ -10,7 +8,9 @@ Features to do:
     - DI
 
 Completed features:
+    - Move all CoreData logic to wrapper
     - Organize folders
     - Add todo
     - Local persistance (Core data)
     - Swipe left to complete, right to delete
+    - Validate new todo entry
