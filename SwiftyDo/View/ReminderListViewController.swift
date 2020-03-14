@@ -41,12 +41,16 @@ extension ReminderListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TableViewCell
         
-        // todo: move this to VM/presenter?
         let reminder = viewModel.fetchedResultsController.object(at: indexPath)
         
-        cell.textLabel?.text = reminder.name
+        cell.label.text = reminder.name
+        
+        if (!reminder.completed) {
+            cell.completedImage.isHidden = true
+        }
+        
         return cell
     }
 }
@@ -99,9 +103,9 @@ extension ReminderListViewController: NSFetchedResultsControllerDelegate {
     ) {
         switch type {
         case .insert:
-            tableView.insertRows(at: [newIndexPath!], with: .fade)
+            tableView.insertRows(at: [newIndexPath!], with: .automatic)
         case .delete:
-            tableView.deleteRows(at: [indexPath!], with: .fade)
+            tableView.deleteRows(at: [indexPath!], with: .automatic)
         case .update:
             let cell = tableView.cellForRow(at: indexPath!)
             cell?.textLabel?.text = viewModel.fetchedResultsController.object(at: indexPath!).name!

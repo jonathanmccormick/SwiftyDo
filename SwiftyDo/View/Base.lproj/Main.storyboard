@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="O63-z9-Ud5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="O63-z9-Ud5">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,13 +20,40 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ITh-jD-vBK">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="ITh-jD-vBK" customClass="TableViewCell" customModule="SwiftyDo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="425" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ITh-jD-vBK" id="Vjz-U2-lLw">
                                             <rect key="frame" x="0.0" y="0.0" width="425" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="5ph-EP-VEu">
+                                                    <rect key="frame" x="20" y="20" width="16" height="4"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="GBM-ij-sMY"/>
+                                                        <constraint firstAttribute="width" constant="16" id="Rfu-0w-p8n"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="01B-2S-gII">
+                                                    <rect key="frame" x="44" y="11" width="42" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="01B-2S-gII" firstAttribute="leading" secondItem="5ph-EP-VEu" secondAttribute="trailing" constant="8" symbolic="YES" id="74J-K2-LWt"/>
+                                                <constraint firstItem="5ph-EP-VEu" firstAttribute="leading" secondItem="Vjz-U2-lLw" secondAttribute="leading" constant="20" symbolic="YES" id="7Da-Vx-f6l"/>
+                                                <constraint firstItem="01B-2S-gII" firstAttribute="bottom" secondItem="Vjz-U2-lLw" secondAttribute="bottomMargin" id="8Dq-6E-TgD"/>
+                                                <constraint firstItem="01B-2S-gII" firstAttribute="top" secondItem="Vjz-U2-lLw" secondAttribute="topMargin" id="Dja-ed-N3h"/>
+                                                <constraint firstItem="5ph-EP-VEu" firstAttribute="top" secondItem="Vjz-U2-lLw" secondAttribute="top" constant="20" symbolic="YES" id="ITG-Ke-EFf"/>
+                                                <constraint firstAttribute="bottom" secondItem="5ph-EP-VEu" secondAttribute="bottom" constant="20" symbolic="YES" id="exU-uA-pGA"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="completedImage" destination="5ph-EP-VEu" id="1vQ-tc-JRt"/>
+                                            <outlet property="label" destination="01B-2S-gII" id="mEB-cB-Ekk"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -157,4 +184,7 @@
             <point key="canvasLocation" x="131.8840579710145" y="138.61607142857142"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Checkmark" width="512" height="512"/>
+    </resources>
 </document>
