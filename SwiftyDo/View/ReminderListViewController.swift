@@ -46,6 +46,12 @@ extension ReminderListViewController: UITableViewDataSource {
         let reminder = viewModel.fetchedResultsController.object(at: indexPath)
         
         cell.label.text = reminder.name
+        
+        // If the item is due today or tomorrow make it red
+        if let date = reminder.dueDate, date <= Date() {
+            cell.label.textColor = .systemRed
+        }
+        
         cell.completedImage.isHidden = !reminder.completed
         
         return cell
