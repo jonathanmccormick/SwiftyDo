@@ -56,6 +56,10 @@ class ReminderListViewModel {
         reminderDataClient.complete(reminder: fetchedResultsController.object(at: indexPath))
     }
     
+    func unComplete(reminderAt indexPath: IndexPath) {
+        reminderDataClient.unComplete(reminder: fetchedResultsController.object(at: indexPath))
+    }
+    
     func delete(reminderAt indexPath: IndexPath) {
         reminderDataClient.delete(reminder: fetchedResultsController.object(at: indexPath))
     }

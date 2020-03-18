@@ -6,8 +6,11 @@ Features to do:
     - Splash screen / logo
     - Default message if no todos exist / all todos completed
     - DI
+    - Swipe to complete visual bug
 
 Completed features:
+    - Uncomplete todo
+    - Complete todo
     - Move all CoreData logic to wrapper
     - Organize folders
     - Add todo

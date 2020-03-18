@@ -53,6 +53,11 @@ class ReminderDataClient {
         save()
     }
     
+    func unComplete(reminder: NSManagedObject) {
+        reminder.setValue(false, forKey: "completed")
+        save()
+    }
+    
     private func save() {
         do {
             try managedObjectContext.save()

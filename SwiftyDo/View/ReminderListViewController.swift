@@ -46,10 +46,7 @@ extension ReminderListViewController: UITableViewDataSource {
         let reminder = viewModel.fetchedResultsController.object(at: indexPath)
         
         cell.label.text = reminder.name
-        
-        if (!reminder.completed) {
-            cell.completedImage.isHidden = true
-        }
+        cell.completedImage.isHidden = !reminder.completed
         
         return cell
     }
@@ -67,13 +64,31 @@ extension ReminderListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let completeAction = UIContextualAction(style: .normal, title:  "Complete", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-            self.viewModel.complete(reminderAt: indexPath)
-                success(true)
-            })
+        let swipeRightAction: UIContextualAction
+        let actionTitle: String
+        let actionBackgroundColor: UIColor
+        let handler: UIContextualAction.Handler
         
-        completeAction.backgroundColor = .systemGreen
-        return UISwipeActionsConfiguration(actions: [completeAction])
+        if (viewModel.fetchedResultsController.object(at: indexPath).completed) {
+            actionTitle = "UnComplete"
+            actionBackgroundColor = UIColor.systemOrange
+            handler = { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+               self.viewModel.unComplete(reminderAt: indexPath)
+                   success(true)
+               }
+        } else {
+            actionTitle = "Complete"
+            actionBackgroundColor = UIColor.systemGreen
+            handler = { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+               self.viewModel.complete(reminderAt: indexPath)
+                   success(true)
+               }
+        }
+            
+        swipeRightAction = UIContextualAction(style: .normal, title:  actionTitle, handler: handler)
+        swipeRightAction.backgroundColor = actionBackgroundColor
+        
+        return UISwipeActionsConfiguration(actions: [swipeRightAction])
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
