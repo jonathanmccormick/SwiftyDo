@@ -1,5 +1,7 @@
 
 Features to do:
+    - Overdue todos are red
+    - Overdue section? Not sure how this would work.
     - Make todos dragable / sortable
     - Reminders date/time/location
     - Auth / cloud persistance (FaceID, encryption)
