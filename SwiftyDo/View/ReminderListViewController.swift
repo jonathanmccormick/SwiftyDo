@@ -22,6 +22,7 @@ class ReminderListViewController: UIViewController {
     }
     
     // todo: not sure where this should go but it's not here... NavigationController?
+    // edit: need a presentation layer. Or presenter.
     private func presentReminderViewController(indexPath: IndexPath) {
         let viewController = storyboard?.instantiateViewController(identifier: ReminderViewController.storyboardIdentifier) as! ReminderViewController
         viewController.configure(with: viewModel.fetchedResultsController.object(at: indexPath))
