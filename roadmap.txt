@@ -7,6 +7,9 @@ Features to do:
     - Splash screen / logo
     - Default message if no todos exist / all todos completed
     - DI
+    - Make due date optional?
+    - Localize strings
+    - Tap on empty row creates new todo
 
 Completed features:
     - Swipe to complete visual bug
