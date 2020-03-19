@@ -11,7 +11,7 @@ import UIKit
 class TableViewCell: UITableViewCell {
 
     @IBOutlet weak var completedImage: UIImageView!
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var reminderLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

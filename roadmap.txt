@@ -1,6 +1,5 @@
 
 Features to do:
-    - Overdue todos are red
     - Overdue section? Not sure how this would work.
     - Make todos dragable / sortable
     - Reminders date/time/location
@@ -8,9 +7,10 @@ Features to do:
     - Splash screen / logo
     - Default message if no todos exist / all todos completed
     - DI
-    - Swipe to complete visual bug
 
 Completed features:
+    - Swipe to complete visual bug
+    - Overdue todos are red
     - Uncomplete todo
     - Complete todo
     - Move all CoreData logic to wrapper

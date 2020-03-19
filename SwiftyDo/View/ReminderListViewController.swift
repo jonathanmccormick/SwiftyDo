@@ -43,14 +43,13 @@ extension ReminderListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TableViewCell
-        
         let reminder = viewModel.fetchedResultsController.object(at: indexPath)
         
-        cell.label.text = reminder.name
-        
+        cell.reminderLabel.text = reminder.name
+
         // If the item is due today or tomorrow make it red
         if let date = reminder.dueDate, date <= Date() {
-            cell.label.textColor = .systemRed
+            cell.reminderLabel.textColor = .systemRed
         }
         
         cell.completedImage.isHidden = !reminder.completed
@@ -80,16 +79,16 @@ extension ReminderListViewController: UITableViewDelegate {
             actionTitle = "UnComplete"
             actionBackgroundColor = UIColor.systemOrange
             handler = { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-               self.viewModel.unComplete(reminderAt: indexPath)
-                   success(true)
-               }
+                self.viewModel.unComplete(reminderAt: indexPath)
+                success(true)
+            }
         } else {
             actionTitle = "Complete"
             actionBackgroundColor = UIColor.systemGreen
             handler = { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-               self.viewModel.complete(reminderAt: indexPath)
-                   success(true)
-               }
+                self.viewModel.complete(reminderAt: indexPath)
+                success(true)
+            }
         }
             
         swipeRightAction = UIContextualAction(style: .normal, title:  actionTitle, handler: handler)
@@ -129,8 +128,8 @@ extension ReminderListViewController: NSFetchedResultsControllerDelegate {
         case .delete:
             tableView.deleteRows(at: [indexPath!], with: .automatic)
         case .update:
-            let cell = tableView.cellForRow(at: indexPath!)
-            cell?.textLabel?.text = viewModel.fetchedResultsController.object(at: indexPath!).name!
+            let cell = tableView.cellForRow(at: indexPath!) as! TableViewCell
+            cell.reminderLabel.text = viewModel.fetchedResultsController.object(at: indexPath!).name!
         case .move:
             tableView.deleteRows(at: [indexPath!], with: .fade)
             tableView.insertRows(at: [indexPath!], with: .fade)

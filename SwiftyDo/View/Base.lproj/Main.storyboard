@@ -34,7 +34,7 @@
                                                         <constraint firstAttribute="width" constant="16" id="Rfu-0w-p8n"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="01B-2S-gII">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="01B-2S-gII" userLabel="ReminderLabel">
                                                     <rect key="frame" x="44" y="11" width="42" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -52,7 +52,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="completedImage" destination="5ph-EP-VEu" id="1vQ-tc-JRt"/>
-                                            <outlet property="label" destination="01B-2S-gII" id="mEB-cB-Ekk"/>
+                                            <outlet property="reminderLabel" destination="01B-2S-gII" id="ST1-Dd-0M9"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
