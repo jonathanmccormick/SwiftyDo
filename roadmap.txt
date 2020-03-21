@@ -1,7 +1,6 @@
 
 Features to do:
     - Overdue section? Not sure how this would work.
-    - Make todos dragable / sortable
     - Reminders date/time/location
     - Auth / cloud persistance (FaceID, encryption)
     - Splash screen / logo
@@ -12,6 +11,7 @@ Features to do:
     - Tap on empty row creates new todo
 
 Completed features:
+    - Make todos dragable / sortable
     - Swipe to complete visual bug
     - Overdue todos are red
     - Uncomplete todo

@@ -73,11 +73,18 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="IF9-gN-v74">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="daf-iD-sVj">
-                            <connections>
-                                <segue destination="PzH-OE-m4X" kind="show" id="fXR-s4-nWP"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="daf-iD-sVj">
+                                <connections>
+                                    <segue destination="PzH-OE-m4X" kind="show" id="fXR-s4-nWP"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Edit" id="tT3-Zp-QXu">
+                                <connections>
+                                    <action selector="editTapped:" destination="BYZ-38-t0r" id="HJX-wD-nVM"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="sTq-rT-aKY" id="1xQ-AO-Rj7"/>
