@@ -15,7 +15,7 @@ class ReminderListViewController: UIViewController {
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBAction func editTapped(_ sender: Any) {
         
-        if(self.tableView.isEditing == true)
+        if (self.tableView.isEditing == true)
         {
             self.tableView.isEditing = false
             editButton.title = "Edit"
@@ -60,12 +60,6 @@ extension ReminderListViewController: UITableViewDataSource {
         let reminder = viewModel.fetchedResultsController.object(at: indexPath)
         
         cell.reminderLabel.text = reminder.name
-
-        // If the item is due today or tomorrow make it red
-        if let date = reminder.dueDate, date <= Date() {
-            cell.reminderLabel.textColor = .systemRed
-        }
-        
         cell.completedImage.isHidden = !reminder.completed
         
         return cell
