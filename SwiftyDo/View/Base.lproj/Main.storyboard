@@ -87,6 +87,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="editButton" destination="tT3-Zp-QXu" id="M5a-Ib-BE4"/>
                         <outlet property="tableView" destination="sTq-rT-aKY" id="1xQ-AO-Rj7"/>
                     </connections>
                 </viewController>

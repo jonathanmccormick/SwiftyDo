@@ -12,14 +12,18 @@ import CoreData
 class ReminderListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var editButton: UIBarButtonItem!
     @IBAction func editTapped(_ sender: Any) {
+        
         if(self.tableView.isEditing == true)
         {
             self.tableView.isEditing = false
+            editButton.title = "Edit"
         }
         else
         {
             self.tableView.isEditing = true
+            editButton.title = "Done"
         }
     }
     
