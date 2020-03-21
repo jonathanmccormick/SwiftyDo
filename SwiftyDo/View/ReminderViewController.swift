@@ -26,7 +26,7 @@ class ReminderViewController: UIViewController {
         if isTitleFieldValid() {
             createOrUpdate(
                 name: reminderTextField.text!,
-                completed: false,
+                completed: reminder?.completed ?? false,
                 notes: notesTextField.text ?? "",
                 dueDate: datePicker.date)
             dismissSelf()
